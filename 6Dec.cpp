@@ -2,7 +2,7 @@
 #include <algorithm>
 #include <vector>
 using namespace std;
-typedef unsigned long ul;
+typedef unsigned long long ul;
 ifstream cin("adv1.in");
 ofstream cout("adv1.out");
 ul cnt(vector<ul> v, int size)
@@ -14,11 +14,11 @@ ul cnt(vector<ul> v, int size)
 void calculateFishPop(vector <ul> freq, int days)
 {
     while(days--){
-        ul reborn = freq[0];
+        ul child = freq[0];
         rotate(freq.begin(), freq.begin() + 1, freq.end());
-        freq[6] += reborn;
+        freq[6] += child;
     }
-    cout<< cnt(freq, 9);
+    cout<< cnt(freq, 8);
 }
 
 int x;

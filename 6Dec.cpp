@@ -14,9 +14,9 @@ ul cnt(vector<ul> v, int size)
 void calculateFishPop(vector <ul> freq, int days)
 {
     while(days--){
-        ul child = freq[0];
+        ul reborn = freq[0];
         rotate(freq.begin(), freq.begin() + 1, freq.end());
-        freq[6] += child;
+        freq[6] += reborn;
     }
     cout<< cnt(freq, 9);
 }

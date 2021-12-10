@@ -7,11 +7,12 @@
 using namespace std;
 ifstream cin("adv1.in");
 ofstream cout("adv1.out");
-char delimiter, code2[10];
+char delimiter;
 map<char, char>alfabet;
 int uniq[] = {2, 3, 4, 7};
 int cnt_unique= 0;
 int freq[80];
+unsigned long long SUM = 0;
 void wipe()
 {
     for(int i = (int)'a' ;i <= (int)'g';i++)
@@ -28,18 +29,39 @@ void change_word(string &x)
     {
         for(auto it = alfabet.begin(); it != alfabet.end(); it++)
         {
-            if(x[i] == it->second)
+            if(x[i] == (it->second))
             {
-                x[i] = it->first;
-                //break;
+                x[i] = (it->first);
+                break;
             }
         }
     }
     sort(x.begin(),x.end());
 }
-vector<string>initial{"abcef","cf","acdeg","acdfg","bcdf","abdfg","adbefg","acf","abcdefg","abcdfg"};
+int cif(string x)
+{
+    if(x == "abcef")
+        return 0;
+    if(x == "cf")
+        return 1;
+    if(x == "acdeg")
+        return 2;
+    if(x == "acdfg")
+        return 3;
+    if(x == "bcdf")
+        return 4;
+    if(x == "abdfg")
+        return 5;
+    if(x == "abdefg")
+        return 6;
+    if(x == "acf")
+        return 7;
+    if(x == "abcdefg")
+        return 8;
+    if(x == "abcdfg")
+        return 9;
+}
 int main(){
-    
     while(cin >> numbers[1] >> numbers[2] >> numbers[3]>> numbers[4] >> numbers[5] >> numbers[6]>> numbers[7] >> numbers[8] >> numbers[9]>>numbers[10]>>delimiter)
     {
         int digitnr=0;
@@ -109,20 +131,14 @@ int main(){
                     cnt_unique++;
             }
         }
+        int NUMAR=0;
         for(int i = 1; i<=4; i++)
         {
             change_word(cifre[i]);
-            for(int j = 0; j<initial.size(); j++)
-            {
-                if(cifre[i] == numbers[j])
-                {
-                    digitnr = 10 * digitnr + j;
-                    //break;
-                }
-            }
+            NUMAR = NUMAR*10 +cif(cifre[i]);
         }
-        cout<<digitnr<<endl;
+        SUM+=NUMAR;
     }
     cout << cnt_unique<<endl;//first part
+    cout<<SUM;//second part
 }
-

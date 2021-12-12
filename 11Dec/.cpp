@@ -54,7 +54,7 @@ int p2()
     int step;
     for(step = 101; !sync; step++)
     {
-        int total_sum = 0;
+        int cate_flashuri=0;
         for (int i = 1; i <= DIM; i++) {
             for (int j = 1; j <= DIM; j++) {
                 update(i, j);
@@ -63,12 +63,12 @@ int p2()
         for (int i = 1; i <= DIM; i++) {
             for (int j = 1; j <= DIM; j++) {
                 if (mat[i][j] >= 10) {
+                    cate_flashuri++;
                     mat[i][j] = 0;
                 }
-                total_sum += mat[i][j];
             }
         }
-        if(!total_sum)
+        if(cate_flashuri==100)
             sync = true;
     }
     return step-1;

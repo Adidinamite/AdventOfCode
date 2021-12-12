@@ -28,8 +28,52 @@ void update(int i, int j)
         }
     }
 }
-int main(){
+int p1()
+{
     int flashes = 0;
+    for(int step = 1; step <= 100; step++) {
+        for (int i = 1; i <= DIM; i++) {
+            for (int j = 1; j <= DIM; j++) {
+                update(i, j);
+            }
+        }
+        for (int i = 1; i <= DIM; i++) {
+            for (int j = 1; j <= DIM; j++) {
+                if (mat[i][j] >= 10) {
+                    flashes++;
+                    mat[i][j] = 0;
+                }
+            }
+        }
+    }
+    return flashes;
+}
+int p2()
+{
+    bool sync = false;
+    int step;
+    for(step = 101; !sync; step++)
+    {
+        int total_sum = 0;
+        for (int i = 1; i <= DIM; i++) {
+            for (int j = 1; j <= DIM; j++) {
+                update(i, j);
+            }
+        }
+        for (int i = 1; i <= DIM; i++) {
+            for (int j = 1; j <= DIM; j++) {
+                if (mat[i][j] >= 10) {
+                    mat[i][j] = 0;
+                }
+                total_sum += mat[i][j];
+            }
+        }
+        if(!total_sum)
+            sync = true;
+    }
+    return step-1;
+}
+int main(){
     string line;
     for(int i = 1; i<=DIM; i++)
     {
@@ -41,26 +85,8 @@ int main(){
         }
     }
     //part 1
-    for(int step = 1; step <= 100; step++)
-    {
-        for(int i = 1; i<=DIM; i++)
-        {
-            for(int j = 1; j<=DIM; j++)
-            {
-                update(i, j);
-            }
-        }
-        for(int i = 1; i<=DIM; i++)
-        {
-            for(int j = 1; j<=DIM; j++)
-            {
-                if(mat[i][j] >=10)
-                {
-                    flashes++;
-                    mat[i][j] = 0;
-                }
-            }
-        }
-    }
-    cout<< flashes;
+    cout<<p1()<<endl;
+    //part 2
+    cout<<p2();
+
 }
